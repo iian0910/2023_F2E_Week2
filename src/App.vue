@@ -19,7 +19,7 @@ const totalVoteData = ref([
 
 const countyVoteData = ref([
   {
-    county      : 'TP',
+    county      : 'tbs',
     validVotes  : 1632453,
     party_PPT   : 875854,
     party_KMT   : 685830,
@@ -28,6 +28,7 @@ const countyVoteData = ref([
 ])
 
 function getCity(e) {
+  console.log('GET CITY', e)
   city.value = e
 }
 </script>

@@ -1,11 +1,19 @@
 <script setup>
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 import { fix2, ThousandSign } from '../assets/js/common'
 
-const totalVotes = ref(302707)
-const party_PPT = ref(152046)
-const party_KMT = ref(133791)
-const party_PFP = ref(13315)
+const validVotes  = ref(0)
+const party_PPT   = ref(0)
+const party_KMT   = ref(0)
+const party_PFP   = ref(0)
+
+const props = defineProps(['voteData'])
+watch(props.voteData, (vote) => {
+  validVotes.value  = vote.validVotes
+  party_PPT.value   = vote.party_PPT
+  party_KMT.value   = vote.party_KMT
+  party_PFP.value   = vote.party_PFP
+}, {immediate: true})
 
 </script>
 
@@ -19,7 +27,7 @@ const party_PFP = ref(13315)
       </div>
       <div class="deliver PPT"></div>
       <div class="party_vote_rate">
-        <div class="T-RG">{{ fix2(party_PPT / totalVotes * 100) }}%</div>
+        <div class="T-RG">{{ fix2(party_PPT / validVotes * 100) }}%</div>
         <div class="T-XS">{{ ThousandSign(party_PPT) }}票</div>
       </div>
     </div>
@@ -31,7 +39,7 @@ const party_PFP = ref(13315)
       </div>
       <div class="deliver KMT"></div>
       <div class="party_vote_rate">
-        <div class="T-RG">{{ fix2(party_KMT / totalVotes * 100) }}%</div>
+        <div class="T-RG">{{ fix2(party_KMT / validVotes * 100) }}%</div>
         <div class="T-XS">{{ ThousandSign(party_KMT) }}票</div>
       </div>
     </div>
@@ -43,7 +51,7 @@ const party_PFP = ref(13315)
       </div>
       <div class="deliver PFP"></div>
       <div class="party_vote_rate">
-        <div class="T-RG">{{ fix2(party_PFP / totalVotes * 100) }}%</div>
+        <div class="T-RG">{{ fix2(party_PFP / validVotes * 100) }}%</div>
         <div class="T-XS">{{ ThousandSign(party_PFP) }}票</div>
       </div>
     </div>

@@ -6,8 +6,28 @@ import VoteAnalysis from './components/VoteAnalysis.vue';
 
 let city = ref('')
 
+const totalVoteData = ref([
+  {
+    votePerson  : 19311105, // 選舉人數
+    validVotes  : 14300940, // 有效票數
+    invalidVotes: 163631,   // 無效票數
+    party_PFP   : 608590,   // 候選人得票
+    party_KMT   : 5522119,  // 候選人得票
+    party_PPT   : 8170231   // 候選人得票
+  }
+])
+
+const countyVoteData = ref([
+  {
+    county      : 'TP',
+    validVotes  : 1632453,
+    party_PPT   : 875854,
+    party_KMT   : 685830,
+    party_PFP   : 70769
+  }
+])
+
 function getCity(e) {
-  console.log('GET ==>', e)
   city.value = e
 }
 </script>
@@ -23,9 +43,9 @@ function getCity(e) {
   <div class="tab_contain">
     <div class="container">
       <div class="d-flex justify-content-between">
-        <VoteAnalysis />
+        <VoteAnalysis :voteData="totalVoteData"/>
         <TaiwanMap @getCity=getCity />
-        <Tips :selected="city"/>
+        <Tips :selected="city" :countyVoteData="countyVoteData"/>
       </div>
     </div>
   </div>

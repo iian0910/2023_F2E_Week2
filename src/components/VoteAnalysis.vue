@@ -1,32 +1,40 @@
 <script setup>
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js'
-import { ref } from 'vue'
+import { ref, watch } from 'vue'
 import { Doughnut } from 'vue-chartjs'
 import CandidateList from './CandidateList.vue'
 import { fix2, ThousandSign } from '../assets/js/common'
 
 ChartJS.register(ArcElement, Tooltip, Legend)
 
-const validVotePerson = ref(413477) // 可投票人數
-const totalVotes = ref(302707) // 總投票人數
-const validVotes = ref(299152) // 有效投票人數
-const invalidVotes = ref(3555) // 無效投票人數
+const totalVote = ref([])
 
-const party_PPT = ref(152046)
-const party_KMT = ref(133791)
-const party_PFP = ref(13315)
+const props = defineProps(['voteData'])
+watch(props.voteData, (val) => {
+  totalVote.value = val[0]
+}, {immediate: true})
 
+const votePerson    = ref(totalVote.value.votePerson)             // 選舉人數
+const validVotes    = ref(totalVote.value.validVotes)             // 有效投票人數
+const invalidVotes  = ref(totalVote.value.invalidVotes)           // 無效投票人數
+const totalVotes    = ref(validVotes.value + invalidVotes.value)  // 總投票人數(有效 + 無效)
+const notVote       = ref(votePerson.value - totalVotes.value)    // 未投票人數(選舉人數 - 總投票人數)
+
+const party_PPT = ref(totalVote.value.party_PPT)
+const party_KMT = ref(totalVote.value.party_KMT)
+const party_PFP = ref(totalVote.value.party_PFP)
+
+// 畫圓餅圖
 const vote_data = ref(
   {
     datasets: [
       {
         backgroundColor: [ '#262E49', '#D9D9D9' ],
-        data: [validVotes.value, invalidVotes.value]
+        data: [(totalVotes.value / votePerson.value), (notVote.value / votePerson.value)]
       }
     ]
   }
 )
-
 const party_data = ref(
   {
     datasets: [
@@ -37,7 +45,6 @@ const party_data = ref(
     ]
   }
 )
-
 const options = ref(
   {
     responsive: true,
@@ -58,7 +65,7 @@ const options = ref(
             </div>
             <div class="col-6 p-0 d-flex">
               <div class="mx-auto align-self-center text-center">
-                {{ fix2(totalVotes / validVotePerson * 100) }}%<br>投票率
+                {{ fix2(totalVotes / votePerson * 100) }}%<br>投票率
               </div>
             </div>
           </div>
@@ -84,7 +91,7 @@ const options = ref(
             </div>
           </div>
         </div>
-        <CandidateList />
+        <CandidateList :voteData="totalVote"/>
       </div>
     </div>
   </div>

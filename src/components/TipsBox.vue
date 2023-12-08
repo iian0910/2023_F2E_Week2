@@ -1,11 +1,14 @@
 <script setup>
-import { watch } from "vue"
+import { ref, watch } from "vue"
 import CandidateList from './CandidateList.vue'
 
-const props = defineProps(['selected'])
-watch(props.selected, () => {
-  console.log('props ==>', props.selected)
-})
+const props = defineProps(['selected', 'countyVoteData'])
+
+const countyVote = ref([])
+
+watch(props.countyVoteData, (vote) => {
+  countyVote.value = vote[0]
+}, {immediate: true})
 </script>
 
 <template>
@@ -14,7 +17,7 @@ watch(props.selected, () => {
       <div class="result d-flex flex-column">
         <div class="mb-auto">
           <div class="mb-2 d-flex align-items-center H6">臺北市</div>
-          <CandidateList />
+          <CandidateList :voteData="countyVote"/>
         </div>
       </div>
     </template>

@@ -1,0 +1,98 @@
+// // 依順序載入BS相關scss檔案
+// @import "~bootstrap/scss/functions";
+// @import "./helpers/variables";      //複製一份客製化
+// @import "~bootstrap/scss/bootstrap";
+// 思源黑體
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Noto+Sans+TC:wght@400;600&display=swap');
+
+.H1,
+.T-LG {
+  //styleName: NotoSans R/Desktop/T(LG);
+  font-family: 'Noto Sans TC', 'Inter', sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 28px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+.H2 {
+  //styleName: NotoSans SB/Desktop/H2;
+  font-family: 'Noto Sans TC', 'Inter', sans-serif;
+  font-size: 48px;
+  font-weight: 600;
+  line-height: 58px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+.H3 {
+  //styleName: NotoSans SB/Desktop/H3;
+  font-family: 'Noto Sans TC', 'Inter', sans-serif;
+  font-size: 40px;
+  font-weight: 600;
+  line-height: 48px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+.H4 {
+  //styleName: NotoSans SB/Desktop/H4;
+  font-family: 'Noto Sans TC', 'Inter', sans-serif;
+  font-size: 32px;
+  font-weight: 600;
+  line-height: 38px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+.H5 {
+  //styleName: NotoSans SB/Desktop/H5;
+  font-family: 'Noto Sans TC', 'Inter', sans-serif;
+  font-size: 24px;
+  font-weight: 600;
+  line-height: 29px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+.H6 {
+  //styleName: NotoSans SB/Desktop/H6;
+  font-family: 'Noto Sans TC', 'Inter', sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 24px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+.T-MD {
+  //styleName: NotoSans R/Desktop/T(MD);
+  font-family: 'Noto Sans TC', 'Inter', sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 25px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+.T-RG {
+  //styleName: NotoSans R/Desktop/T(RG);
+  font-family: 'Noto Sans TC', 'Inter', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 22px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+.T-SM {
+  //styleName: NotoSans R/Desktop/T(SM);
+  font-family: 'Noto Sans TC', 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+.T-XS {
+  //styleName: NotoSans R/Desktop/T(XS);
+  font-family: 'Noto Sans TC', 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 17px;
+  letter-spacing: 0em;
+  text-align: left;
+}

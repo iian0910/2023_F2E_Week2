@@ -2,15 +2,18 @@
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js'
 import { ref } from 'vue'
 import { Doughnut } from 'vue-chartjs'
+import { fix2, ThousandSign } from '../assets/js/common'
 
 ChartJS.register(ArcElement, Tooltip, Legend)
-const totalVotes = ref(100)
-const validVotes = ref(80)
-const invalidVotes = ref(20)
 
-const party_PPT = ref(90)
-const party_KMT = ref(5)
-const party_PFP = ref(5)
+const validVotePerson = ref(413477) // 可投票人數
+const totalVotes = ref(302707) // 總投票人數
+const validVotes = ref(299152) // 有效投票人數
+const invalidVotes = ref(3555) // 無效投票人數
+
+const party_PPT = ref(152046)
+const party_KMT = ref(133791)
+const party_PFP = ref(13315)
 
 const vote_data = ref(
   {
@@ -54,22 +57,22 @@ const options = ref(
             </div>
             <div class="col-6 p-0 d-flex">
               <div class="mx-auto align-self-center text-center">
-                {{ validVotes / totalVotes * 100 }}%<br>投票率
+                {{ fix2(totalVotes / validVotePerson * 100) }}%<br>投票率
               </div>
             </div>
           </div>
         </div>
         <div class="vote_list mb-2">
           <span class="T-RG me-2">投票數</span>
-          <span class="T-XS"> {{ totalVotes }}票</span>
+          <span class="T-XS"> {{ ThousandSign(totalVotes) }}票</span>
         </div>
         <div class="vote_list mb-2">
           <span class="T-RG me-2">有效票數</span>
-          <span class="T-XS"> {{ validVotes }}票</span>
+          <span class="T-XS"> {{ ThousandSign(validVotes) }}票</span>
         </div>
         <div class="vote_list">
           <span class="T-RG me-2">無效票數</span>
-          <span class="T-XS"> {{ invalidVotes }}票</span>
+          <span class="T-XS"> {{ ThousandSign(invalidVotes) }}票</span>
         </div>
       </div>
       <div class="party_rate">
@@ -88,8 +91,8 @@ const options = ref(
           </div>
           <div class="deliver PPT"></div>
           <div class="party_vote_rate">
-            <div class="T-RG">{{ party_PPT / totalVotes * 100 }}%</div>
-            <div class="T-XS">{{ party_PPT }}張</div>
+            <div class="T-RG">{{ fix2(party_PPT / totalVotes * 100) }}%</div>
+            <div class="T-XS">{{ ThousandSign(party_PPT) }}張</div>
           </div>
         </div>
         <div class="vote_list mb-2 d-flex align-items-center">
@@ -100,8 +103,8 @@ const options = ref(
           </div>
           <div class="deliver KMT"></div>
           <div class="party_vote_rate">
-            <div class="T-RG">{{ party_KMT / totalVotes * 100 }}%</div>
-            <div class="T-XS">{{ party_KMT }}張</div>
+            <div class="T-RG">{{ fix2(party_KMT / totalVotes * 100) }}%</div>
+            <div class="T-XS">{{ ThousandSign(party_KMT) }}張</div>
           </div>
         </div>
         <div class="vote_list mb-2 d-flex align-items-center">
@@ -112,8 +115,8 @@ const options = ref(
           </div>
           <div class="deliver PFP"></div>
           <div class="party_vote_rate">
-            <div class="T-RG">{{ party_PFP / totalVotes * 100 }}%</div>
-            <div class="T-XS">{{ party_PFP }}張</div>
+            <div class="T-RG">{{ fix2(party_PFP / totalVotes * 100) }}%</div>
+            <div class="T-XS">{{ ThousandSign(party_PFP) }}張</div>
           </div>
         </div>
       </div>

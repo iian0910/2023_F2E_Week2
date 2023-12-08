@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from "vue"
 
-  let selectedCity = ref('tbs')
+  let selectedCity = ref('')
   const emit = defineEmits(['getCity'])
 
   const selectCity = (city) => {
@@ -15,7 +15,7 @@ import { ref } from "vue"
   }
 
   // 預設選台北
-  selectCity('tbs')
+  selectCity()
 </script>
 
 <template>

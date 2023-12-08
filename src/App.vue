@@ -7,6 +7,7 @@ import VoteAnalysis from './components/VoteAnalysis.vue';
 let city = ref('')
 
 function getCity(e) {
+  console.log('GET ==>', e)
   city.value = e
 }
 </script>
@@ -24,7 +25,7 @@ function getCity(e) {
       <div class="d-flex justify-content-between">
         <VoteAnalysis />
         <TaiwanMap @getCity=getCity />
-        <Tips />
+        <Tips :selected="city"/>
       </div>
     </div>
   </div>

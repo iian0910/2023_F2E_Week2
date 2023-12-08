@@ -1,27 +1,47 @@
+<script setup>
+import { watch } from "vue"
+import CandidateList from './CandidateList.vue'
+
+const props = defineProps(['selected'])
+watch(props.selected, () => {
+  console.log('props ==>', props.selected)
+})
+</script>
+
 <template>
   <div>
-    <div class="tips d-flex flex-column">
-      <div class="mb-auto">
-        <div class="mb-2 d-flex align-items-center">
-          <img src="../assets/image/info.svg" class="icon me-2 d-block" alt=""><span class="H6">小提示</span>
+    <template v-if="props.selected">
+      <div class="result d-flex flex-column">
+        <div class="mb-auto">
+          <div class="mb-2 d-flex align-items-center H6">臺北市</div>
+          <CandidateList />
         </div>
-        <p class="p-0 T-RG">點擊選擇縣市、區、村里，可查看選舉結果</p>
       </div>
-      <div class="tips_img">
-        <img src="../assets/image/tip_select.svg" class="select_img d-block w-100" alt="">
-      </div>
-    </div>
-    <div class="tips d-flex flex-column">
-      <div class="mb-auto">
-        <div class="mb-2 d-flex align-items-center">
-          <img src="../assets/image/info.svg" class="icon me-2 d-block" alt=""><span class="H6">小提示</span>
+    </template>
+    <template v-else>
+      <div class="tips d-flex flex-column">
+        <div class="mb-auto">
+          <div class="mb-2 d-flex align-items-center">
+            <img src="../assets/image/info.svg" class="icon me-2 d-block" alt=""><span class="H6">小提示</span>
+          </div>
+          <p class="p-0 T-RG">點擊選擇縣市、區、村里，可查看選舉結果</p>
         </div>
-        <p class="p-0 T-RG">點擊地圖查看縣市的選舉結果</p>
+        <div class="tips_img">
+          <img src="../assets/image/tip_select.svg" class="select_img d-block w-100" alt="">
+        </div>
       </div>
-      <div class="tips_img">
-        <img src="../assets/image/tip_area.svg" class="select_img d-block w-100" alt="">
+      <div class="tips d-flex flex-column">
+        <div class="mb-auto">
+          <div class="mb-2 d-flex align-items-center">
+            <img src="../assets/image/info.svg" class="icon me-2 d-block" alt=""><span class="H6">小提示</span>
+          </div>
+          <p class="p-0 T-RG">點擊地圖查看縣市的選舉結果</p>
+        </div>
+        <div class="tips_img">
+          <img src="../assets/image/tip_area.svg" class="select_img d-block w-100" alt="">
+        </div>
       </div>
-    </div>
+    </template>
   </div>
 </template>
 
@@ -44,5 +64,16 @@
 }
 .tips_img{
   margin: 32px 32px 25px 32px;
+}
+
+.result {
+  width: 260px;
+  padding: 12px 16px;
+  background-color: #EDF7F0;
+  border-radius: 8px;
+  border: 2px solid #84CB98;
+  &:nth-child(1) {
+    margin-bottom: 20px;
+  }
 }
 </style>

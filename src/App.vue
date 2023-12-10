@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue';
+import { provide, ref } from 'vue';
 import TaiwanMap from './components/TaiwanMap.vue';
 import Tips from './components/TipsBox.vue';
 import VoteAnalysis from './components/VoteAnalysis.vue';
@@ -20,6 +20,7 @@ const totalVoteData = ref([
   }
 ])
 
+// 將各縣市的總統票數用 provide 的方式給子元件
 const countyVoteData = ref([
   {
     county      : 'tbs',
@@ -29,9 +30,9 @@ const countyVoteData = ref([
     party_PFP   : 70769
   }
 ])
+provide('countyVoteData', countyVoteData)
 
 function getCity(e) {
-  console.log('GET CITY', e)
   city.value = e
 }
 </script>
@@ -49,7 +50,7 @@ function getCity(e) {
       <div class="d-flex justify-content-between">
         <VoteAnalysis :voteData="totalVoteData"/>
         <TaiwanMap @getCity=getCity />
-        <Tips :selected="city" :countyVoteData="countyVoteData"/>
+        <Tips :selected="city"/>
       </div>
     </div>
   </div>

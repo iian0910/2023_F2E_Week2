@@ -1,10 +1,9 @@
 <script setup>
-import { computed, ref, watch } from "vue"
+import { ref, watch } from "vue"
 import CandidateList from './CandidateList.vue'
 
-const props = defineProps(['selected', 'countyVoteData'])
-const selectedCounty  = ref('')
-const countyVote      = ref([])
+const props = defineProps(['selected'])
+const selectedCounty    = ref('')
 
 watch(
   () => props.selected,
@@ -12,15 +11,6 @@ watch(
     selectedCounty.value = county
   }
 )
-
-watch(props.countyVoteData, (vote) => {
-  countyVote.value = vote[0]
-}, {immediate: true})
-
-const countyFilter = computed(() => {
-  console.log(countyVote.value)
-  return countyVote.value.filter(item => item.county === selectedCounty.value)
-})
 </script>
 
 <template>
@@ -29,7 +19,7 @@ const countyFilter = computed(() => {
       <div class="result d-flex flex-column">
         <div class="mb-auto">
           <div class="mb-2 d-flex align-items-center H6">臺北市</div>
-          <CandidateList :voteData="countyFilter"/>
+          <CandidateList />
         </div>
       </div>
     </template>

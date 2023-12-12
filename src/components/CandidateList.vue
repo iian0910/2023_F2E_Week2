@@ -1,19 +1,28 @@
 <script setup>
-import { inject } from 'vue'
+import { ref, watch } from 'vue'
 import { fix2, ThousandSign } from '../assets/js/common'
 
-// inject 接收外層各縣市的總統票數資料
-const countyVote  = inject('countyVoteData')
+const props = defineProps(['getVote'])
+const validVotes  = ref('')
+const party_PPT   = ref('')
+const party_KMT   = ref('')
+const party_PFP   = ref('')
 
-const validVotes  = countyVote.value[0].validVotes
-const party_PPT   = countyVote.value[0].party_PPT
-const party_KMT   = countyVote.value[0].party_KMT
-const party_PFP   = countyVote.value[0].party_PFP
+watch(
+  () => props.getVote,
+  (newVal) => {
+    validVotes.value = newVal.validVotes,
+    party_PPT.value = newVal.party_PPT,
+    party_KMT.value = newVal.party_KMT,
+    party_PFP.value = newVal.party_PFP
+  },
+  { immediate: true }
+)
 
 </script>
 
 <template>
-  <div v-if="countyVote">
+  <div>
     <div class="vote_list mb-2 d-flex align-items-center">
       <div class="circle T-XS PPT">3</div>
       <div class="party_combination">

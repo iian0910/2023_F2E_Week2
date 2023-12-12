@@ -10,9 +10,13 @@ ChartJS.register(ArcElement, Tooltip, Legend)
 const totalVote = ref([])
 
 const props = defineProps(['voteData'])
-watch(props.voteData, (val) => {
-  totalVote.value = val[0]
-}, {immediate: true})
+watch(
+  () => props.voteData,
+  (val) => {
+    totalVote.value = val[0]
+  },
+  { immediate: true }
+)
 
 const votePerson    = ref(totalVote.value.votePerson)             // 選舉人數
 const validVotes    = ref(totalVote.value.validVotes)             // 有效投票人數
@@ -91,7 +95,7 @@ const options = ref(
             </div>
           </div>
         </div>
-        <CandidateList :voteData="totalVote"/>
+        <CandidateList :getVote="totalVote"/>
       </div>
     </div>
   </div>

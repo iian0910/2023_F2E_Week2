@@ -1,25 +1,27 @@
 <script setup>
 import { ref, watch } from "vue"
 import CandidateList from './CandidateList.vue'
+import { TransCountyName } from '../assets/js/common'
 
 const props = defineProps(['selected'])
-const selectedCounty    = ref('')
+const getCountyData = ref(null)
 
 watch(
   () => props.selected,
-  (county) => {
-    selectedCounty.value = county
-  }
+  (newVal) => {
+    getCountyData.value = newVal[0]
+  },
+  { immediate: true }
 )
 </script>
 
 <template>
   <div>
-    <template v-if="props.selected">
+    <template v-if="getCountyData">
       <div class="result d-flex flex-column">
         <div class="mb-auto">
-          <div class="mb-2 d-flex align-items-center H6">臺北市</div>
-          <CandidateList />
+          <div class="mb-2 d-flex align-items-center H6">{{ TransCountyName(getCountyData.county) }}</div>
+          <CandidateList :getVote="getCountyData"/>
         </div>
       </div>
     </template>

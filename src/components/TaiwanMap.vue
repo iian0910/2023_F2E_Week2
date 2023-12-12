@@ -13,9 +13,7 @@ import { ref } from "vue"
   const setExtraHover = (city) => {
     extraHover.value = city
   }
-
-  // 預設選台北
-  selectCity()
+  
 </script>
 
 <template>

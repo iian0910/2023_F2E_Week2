@@ -7,8 +7,6 @@ import VoteAnalysis from './components/VoteAnalysis.vue';
 const vh = window.innerHeight * 0.01;
 document.documentElement.style.setProperty('--vh', `${vh}px`);
 
-let city = ref('')
-
 const totalVoteData = ref([
   {
     votePerson  : 19311105, // 選舉人數
@@ -20,7 +18,7 @@ const totalVoteData = ref([
   }
 ])
 
-// 將各縣市的總統票數用 provide 的方式給子元件
+// 蒐集各地區的投票數據
 const countyVoteData = ref([
   {
     county      : 'tbs',
@@ -28,12 +26,29 @@ const countyVoteData = ref([
     party_PPT   : 875854,
     party_KMT   : 685830,
     party_PFP   : 70769
+  },
+  {
+    county      : 'xbs',
+    validVotes  : 100,
+    party_PPT   : 99,
+    party_KMT   : 0,
+    party_PFP   : 1
   }
 ])
-provide('countyVoteData', countyVoteData)
+
+const filterVoteData = ref({
+  county      : '',
+  validVotes  : 0,
+  party_PPT   : 0,
+  party_KMT   : 0,
+  party_PFP   : 0
+})
 
 function getCity(e) {
-  city.value = e
+  console.log(e)
+  filterVoteData.value = countyVoteData.value.filter(item => {
+    return item.county === e
+  })
 }
 </script>
 
@@ -50,7 +65,7 @@ function getCity(e) {
       <div class="d-flex justify-content-between">
         <VoteAnalysis :voteData="totalVoteData"/>
         <TaiwanMap @getCity=getCity />
-        <Tips :selected="city"/>
+        <Tips :selected="filterVoteData" />
       </div>
     </div>
   </div>

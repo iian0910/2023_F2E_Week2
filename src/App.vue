@@ -226,8 +226,6 @@ function getCity(e) {
   font-size: 32px;
 }
 .tab_contain {
-  // height: calc(var(--vh, 1vh) * 100 - 48px);
-  height: calc(100vh - 48px);
   padding-top: 40px;
   padding-bottom: 40px;
   background-color: #f5f5f5;

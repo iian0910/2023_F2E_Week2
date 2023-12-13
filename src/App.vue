@@ -3,11 +3,14 @@ import { ref } from 'vue';
 import TaiwanMap from './components/TaiwanMap.vue';
 import Tips from './components/TipsBox.vue';
 import VoteAnalysis from './components/VoteAnalysis.vue';
-import { totalData, countyVote } from './assets/js/voteData'
+import { countyVote } from './assets/js/voteData'
+import { useStore } from './store/index'
 
-const totalVoteData = ref(totalData)
-
-// 蒐集各地區的投票數據
+// 將資料從 Pinia 中拿出來
+const store = useStore()
+store.getTotalVote()
+const totalVoteData = ref(store.totalVote)
+store.getCountyVote()
 const countyVoteData = ref(countyVote)
 
 const filterVoteData = ref(null)

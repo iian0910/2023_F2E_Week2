@@ -1,5 +1,5 @@
 <script setup>
-import { provide, ref } from 'vue';
+import { ref } from 'vue';
 import TaiwanMap from './components/TaiwanMap.vue';
 import Tips from './components/TipsBox.vue';
 import VoteAnalysis from './components/VoteAnalysis.vue';
@@ -10,17 +10,10 @@ const totalVoteData = ref(totalData)
 // 蒐集各地區的投票數據
 const countyVoteData = ref(countyVote)
 
-const filterVoteData = ref({
-  county      : '',
-  validVotes  : 0,
-  party_PPT   : 0,
-  party_KMT   : 0,
-  party_PFP   : 0
-})
+const filterVoteData = ref(null)
 
 function getCity(e) {
-  console.log(e)
-  filterVoteData.value = countyVoteData.value.filter(item => {
+  filterVoteData.value = countyVoteData.value.find(item => {
     return item.county === e
   })
 }

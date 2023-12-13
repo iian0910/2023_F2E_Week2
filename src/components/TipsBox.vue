@@ -9,7 +9,7 @@ const getCountyData = ref(null)
 watch(
   () => props.selected,
   (newVal) => {
-    getCountyData.value = newVal[0]
+    getCountyData.value = newVal
   },
   { immediate: true }
 )

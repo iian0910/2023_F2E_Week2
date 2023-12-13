@@ -13,7 +13,7 @@ const props = defineProps(['voteData'])
 watch(
   () => props.voteData,
   (val) => {
-    totalVote.value = val[0]
+    totalVote.value = val
   },
   { immediate: true }
 )

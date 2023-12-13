@@ -1,13 +1,11 @@
-export const totalData = [
-  {
-    votePerson  : 19311105, // 選舉人數
-    validVotes  : 14300940, // 有效票數
-    invalidVotes: 163631,   // 無效票數
-    party_PFP   : 608590,   // 候選人得票
-    party_KMT   : 5522119,  // 候選人得票
-    party_PPT   : 8170231   // 候選人得票
-  }
-]
+export const totalData = {
+  votePerson  : 19311105, // 選舉人數
+  validVotes  : 14300940, // 有效票數
+  invalidVotes: 163631,   // 無效票數
+  party_PFP   : 608590,   // 候選人得票
+  party_KMT   : 5522119,  // 候選人得票
+  party_PPT   : 8170231   // 候選人得票
+}
 
 export const countyVote = [
   {

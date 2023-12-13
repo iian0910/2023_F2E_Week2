@@ -1,24 +1,21 @@
 <script setup>
-import { ref } from 'vue';
-import TaiwanMap from './components/TaiwanMap.vue';
-import Tips from './components/TipsBox.vue';
-import VoteAnalysis from './components/VoteAnalysis.vue';
-import { countyVote } from './assets/js/voteData'
-import { useStore } from './store/index'
+import { ref } from 'vue'
+import TaiwanMap from './components/TaiwanMap.vue'
+import Tips from './components/TipsBox.vue'
+import VoteAnalysis from './components/VoteAnalysis.vue'
+import { voteStore } from './store/index'
 
-// 將資料從 Pinia 中拿出來
-const store = useStore()
+// 使用 Pinia 傳遞資料
+const store = voteStore()
 store.getTotalVote()
-const totalVoteData = ref(store.totalVote)
 store.getCountyVote()
-const countyVoteData = ref(countyVote)
-
+const totalVoteData = ref(store.totalVote)
 const filterVoteData = ref(null)
 
+
 function getCity(e) {
-  filterVoteData.value = countyVoteData.value.find(item => {
-    return item.county === e
-  })
+  store.county = e
+  filterVoteData.value = store.filterVote
 }
 </script>
 

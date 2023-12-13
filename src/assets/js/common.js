@@ -36,6 +36,8 @@ export const TransCountyName = (name) => {
       return '雲林縣'
     case 'zhx':
       return '彰化縣'
+    case 'ntx':
+      return '南投縣'
     case 'tzs':
       return '台中市'
     case 'mlx':
@@ -50,5 +52,7 @@ export const TransCountyName = (name) => {
       return '金門縣'
     case 'phx':
       return '澎湖縣'
+    case 'ljx':
+      return '連江縣'
   }
 }

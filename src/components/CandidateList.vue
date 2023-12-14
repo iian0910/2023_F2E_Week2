@@ -4,17 +4,17 @@ import { fix2, ThousandSign } from '../assets/js/common'
 
 const props = defineProps(['getVote'])
 const validVotes  = ref('')
-const party_PPT   = ref('')
-const party_KMT   = ref('')
-const party_PFP   = ref('')
+const party_1   = ref('')
+const party_2   = ref('')
+const party_3   = ref('')
 
 watch(
   () => props.getVote,
   (newVal) => {
     validVotes.value = newVal.validVotes,
-    party_PPT.value = newVal.party_PPT,
-    party_KMT.value = newVal.party_KMT,
-    party_PFP.value = newVal.party_PFP
+    party_1.value = newVal.party_1,
+    party_2.value = newVal.party_2,
+    party_3.value = newVal.party_3
   },
   { immediate: true }
 )
@@ -31,8 +31,8 @@ watch(
       </div>
       <div class="deliver PPT"></div>
       <div class="party_vote_rate">
-        <div class="T-RG">{{ fix2(party_PPT / validVotes * 100) }}%</div>
-        <div class="T-XS">{{ ThousandSign(party_PPT) }}票</div>
+        <div class="T-RG">{{ fix2(party_1 / validVotes * 100) }}%</div>
+        <div class="T-XS">{{ ThousandSign(party_1) }}票</div>
       </div>
     </div>
     <div class="vote_list mb-2 d-flex align-items-center">
@@ -43,8 +43,8 @@ watch(
       </div>
       <div class="deliver KMT"></div>
       <div class="party_vote_rate">
-        <div class="T-RG">{{ fix2(party_KMT / validVotes * 100) }}%</div>
-        <div class="T-XS">{{ ThousandSign(party_KMT) }}票</div>
+        <div class="T-RG">{{ fix2(party_2 / validVotes * 100) }}%</div>
+        <div class="T-XS">{{ ThousandSign(party_2) }}票</div>
       </div>
     </div>
     <div class="vote_list mb-2 d-flex align-items-center">
@@ -55,8 +55,8 @@ watch(
       </div>
       <div class="deliver PFP"></div>
       <div class="party_vote_rate">
-        <div class="T-RG">{{ fix2(party_PFP / validVotes * 100) }}%</div>
-        <div class="T-XS">{{ ThousandSign(party_PFP) }}票</div>
+        <div class="T-RG">{{ fix2(party_3 / validVotes * 100) }}%</div>
+        <div class="T-XS">{{ ThousandSign(party_3) }}票</div>
       </div>
     </div>
   </div>

@@ -26,9 +26,9 @@ const invalidVotes  = ref(totalVote.value.invalidVotes)           // 無效投�
 const totalVotes    = ref(validVotes.value + invalidVotes.value)  // 總投票人數(有效 + 無效)
 const notVote       = ref(votePerson.value - totalVotes.value)    // 未投票人數(選舉人數 - 總投票人數)
 
-const party_PPT = ref(totalVote.value.party_PPT)
-const party_KMT = ref(totalVote.value.party_KMT)
-const party_PFP = ref(totalVote.value.party_PFP)
+const party_1 = ref(totalVote.value.party_1)
+const party_2 = ref(totalVote.value.party_2)
+const party_3 = ref(totalVote.value.party_3)
 
 // 畫圓餅圖
 const vote_data = ref(
@@ -46,7 +46,7 @@ const party_data = ref(
     datasets: [
       {
         backgroundColor: [ '#84CB98', '#8894D8', '#DFA175' ],
-        data: [party_PPT.value, party_KMT.value, party_PFP.value]
+        data: [party_1.value, party_2.value, party_3.value]
       }
     ]
   }

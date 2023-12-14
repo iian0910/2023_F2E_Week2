@@ -2,12 +2,14 @@
 import { ref, watch } from "vue"
 import CandidateList from './CandidateList.vue'
 import { TransCountyName } from '../assets/js/common'
+import { voteStore } from '../store/index'
 
-const props = defineProps(['selected'])
 const getCountyData = ref(null)
 
+// 使用 Store 內的資料
+const store = voteStore()
 watch(
-  () => props.selected,
+  () => store.filterVote,
   (newVal) => {
     getCountyData.value = newVal
   },

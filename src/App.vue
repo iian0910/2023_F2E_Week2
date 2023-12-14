@@ -1,5 +1,4 @@
 <script setup>
-import { ref } from 'vue'
 import TaiwanMap from './components/TaiwanMap.vue'
 import Tips from './components/TipsBox.vue'
 import VoteAnalysis from './components/VoteAnalysis.vue'
@@ -9,13 +8,9 @@ import { voteStore } from './store/index'
 const store = voteStore()
 store.getTotalVote()
 store.getCountyVote()
-const totalVoteData = ref(store.totalVote)
-const filterVoteData = ref(null)
-
 
 function getCity(e) {
   store.county = e
-  filterVoteData.value = store.filterVote
 }
 </script>
 
@@ -30,9 +25,9 @@ function getCity(e) {
   <div class="tab_contain">
     <div class="container">
       <div class="d-flex justify-content-between">
-        <VoteAnalysis :voteData="totalVoteData"/>
+        <VoteAnalysis />
         <TaiwanMap @getCity=getCity />
-        <Tips :selected="filterVoteData" />
+        <Tips />
       </div>
     </div>
   </div>

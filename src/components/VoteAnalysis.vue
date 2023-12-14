@@ -4,14 +4,16 @@ import { ref, watch } from 'vue'
 import { Doughnut } from 'vue-chartjs'
 import CandidateList from './CandidateList.vue'
 import { fix2, ThousandSign } from '../assets/js/common'
+import { voteStore } from '../store/index'
 
 ChartJS.register(ArcElement, Tooltip, Legend)
 
-const totalVote = ref([])
+const totalVote = ref(null)
 
-const props = defineProps(['voteData'])
+// 使用 Store 內的資料
+const store = voteStore()
 watch(
-  () => props.voteData,
+  () => store.totalVote,
   (val) => {
     totalVote.value = val
   },
